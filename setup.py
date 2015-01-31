@@ -8,13 +8,14 @@
 # Copyright (c) 2010 HUDORA. All rights reserved.
 
 from setuptools import setup, find_packages
+import codecs
 
 setup(name='django-rewards',
       maintainer='Maximillian Dornseif',
       # maintainer_email='xXXXx@hudora.de',
-      version='1.0',
+      version='1.01',
       description='xXXXx FILL IN HERE xXXXx',
-      long_description=long_description=codecs.open('README.rst', "r", "utf-8").read(),
+      long_description=codecs.open('README.rst', "r", "utf-8").read(),
       classifiers=['License :: OSI Approved :: AGPL3 License',
                    'Intended Audience :: Developers',
                    'Programming Language :: Python'],

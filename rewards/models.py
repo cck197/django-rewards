@@ -55,6 +55,10 @@ class Inflow(models.Model):
     user_agent = models.CharField(max_length=255)
     referer = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    
+    def __unicode__(self):
+        """Return a Unicode/String representation of the Object."""
+        return u"Inflow for %s" % (self.campaign_designator)
 
 
 class Conversion(models.Model):
@@ -68,8 +72,7 @@ class Conversion(models.Model):
     status = models.CharField(max_length=32, choices=CONVERSION_STATUS_CHOICES,
                               default=CONVERSION_STATUS_CHOICES[0][0])
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
-
-
-
     
-    
+    def __unicode__(self):
+        """Return a Unicode/String representation of the Object."""
+        return u"#%s %s" % (self.reference, self.text)

@@ -9,7 +9,7 @@ Copyright (c) 2010  Maximillian Dornseif. All rights reserved.
 ### SAMPLE CODE FOLLOWS
 
 from django.contrib import admin
-from rewards.models import Campaign, Inflow
+from rewards.models import Campaign, Inflow, Conversion
 
 class CampaignAdmin(admin.ModelAdmin):
     """Configuration of the Django Admin Interface."""
@@ -24,9 +24,12 @@ class CampaignAdmin(admin.ModelAdmin):
 class InflowAdmin(admin.ModelAdmin):
     """Configuration of the Django Admin Interface."""
     date_hierarchy = 'created_at'
-    raw_id_fields = ('campaign', )
+    #raw_id_fields = ('campaign', )
     
+class ConversionAdmin(admin.ModelAdmin):
+    list_filter = ('campaign__name',)
 
 # register admin classes
 admin.site.register(Campaign, CampaignAdmin)
 admin.site.register(Inflow, InflowAdmin)
+admin.site.register(Conversion, ConversionAdmin)
