@@ -12,10 +12,14 @@ import random
 import time
 from django.db import models
 from rewards.tools import get_ip
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 
-CONVERSION_STATUS_CHOICES = (('created', 'created'), ('processed', 'processed'),
-                             ('finished', 'finished'), ('canceled', 'canceled'))
+CONVERSION_STATUS_CHOICES = (('created', _('created')), ('processed', _('processed')),
+                             ('finished', _('finished')), ('canceled', _('canceled')))
+
+PRICE_PER_CHOICES = (('visit', _('visit')), ('signup', _('sign up')),
+                     ('sale', _('sale')),)
 
 class Campaign(models.Model):
     designator = models.CharField(max_length=28, null=True, blank=True, editable=False,
@@ -31,7 +35,7 @@ class Campaign(models.Model):
     
     def __unicode__(self):
         """Return a Unicode/String representation of the Object."""
-        return u"Campaign %s" % (self.designator)
+        return u"Campaign %s aff=%s" % (self.name, self.designator)
     
 
 def campaign_post_save(signal, sender, instance, **kwargs):
@@ -76,3 +80,14 @@ class Conversion(models.Model):
     def __unicode__(self):
         """Return a Unicode/String representation of the Object."""
         return u"#%s %s" % (self.reference, self.text)
+
+class FeaturedCampaign(models.Model):
+    name = models.CharField(_('Name'), max_length=100)
+    description = models.CharField(_('Description'), max_length=200)
+    price = models.DecimalField(_('Price'), decimal_places=2, max_digits=8)
+    priceper = models.CharField(_('Price per'), max_length=32, choices=PRICE_PER_CHOICES, default=PRICE_PER_CHOICES[0][0])
+    url = models.URLField(_('URL'), max_length=1000)
+    is_active = models.BooleanField(_('Active'), default=True, blank=True)
+    
+    def __unicode__(self):
+        return self.name

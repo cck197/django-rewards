@@ -9,7 +9,7 @@ Copyright (c) 2010  Maximillian Dornseif. All rights reserved.
 ### SAMPLE CODE FOLLOWS
 
 from django.contrib import admin
-from rewards.models import Campaign, Inflow, Conversion
+from rewards.models import Campaign, Inflow, Conversion, FeaturedCampaign
 
 class CampaignAdmin(admin.ModelAdmin):
     """Configuration of the Django Admin Interface."""
@@ -33,3 +33,4 @@ class ConversionAdmin(admin.ModelAdmin):
 admin.site.register(Campaign, CampaignAdmin)
 admin.site.register(Inflow, InflowAdmin)
 admin.site.register(Conversion, ConversionAdmin)
+admin.site.register(FeaturedCampaign)
