@@ -13,7 +13,7 @@ import codecs
 setup(name='django-rewards',
       maintainer='Maximillian Dornseif',
       # maintainer_email='xXXXx@hudora.de',
-      version='1.02',
+      version='1.03',
       description='xXXXx FILL IN HERE xXXXx',
       long_description=codecs.open('README.rst', "r", "utf-8").read(),
       classifiers=['License :: OSI Approved :: AGPL3 License',
